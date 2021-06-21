@@ -8,5 +8,5 @@ object RemoteConstants {
     const val POSTER_PATH: String = "poster_path"
     const val TITLE: String = "title"
     const val VOTE_AVERAGE: String = "vote_average"
-    const val DEFAULT_VOTE_AVERAGE: Double = 0.0
+    const val RELEASE_DATE: String = "release_date"
 }

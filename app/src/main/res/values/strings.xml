@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MyTmdb</string>
+    <string name="error_icon">Error</string>
+    <string name="ui_error_icon">Error icon</string>
+    <string name="retry">Reintentar</string>
+    <string name="error_description">Te invitamos a revisar tu conexión a internet e intentarlo nuevamente.</string>
+    <string name="error_title">¡Vaya!\nHa ocurrido un error</string>
+    <string name="an_error_has_occured">¡Vaya!\nHa ocurrido un error</string>
+    <string name="check_your_internet_connection_and_retry">Te invitamos a revisar tu conexión a internet e intentarlo nuevamente.</string>
 </resources>

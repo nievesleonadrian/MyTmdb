@@ -1,35 +1,35 @@
 package com.desafio.mytmdb.data
 
 import com.desafio.mytmdb.data.mapper.DataMovieMapper
+import com.desafio.mytmdb.data.model.RemoteMoviesResponse
 import com.desafio.mytmdb.data.source.MoviesRemote
 import com.desafio.mytmdb.domain.model.DomainMovie
 import com.desafio.mytmdb.factory.MovieFactory.makeDomainMovieList
+import com.desafio.mytmdb.factory.MovieFactory.makeRemoteMoviesResponse
 import com.desafio.mytmdb.factory.RandomFactory
-import io.mockk.mockk
-import io.reactivex.rxjava3.core.Single
-import org.junit.Assert.*
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
+import io.reactivex.Single
 import org.junit.Test
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.whenever
 
 class DataMoviesRepositoryTest {
 
     private val remote = mock<MoviesRemote>()
-    private val mapper = mockk<DataMovieMapper>()
+    private val mapper = mock<DataMovieMapper>()
     private val repository = DataMoviesRepository(remote, mapper)
-    private val apiKey = RandomFactory.generateString()
+    private val stubRemoteMoviesResponse: RemoteMoviesResponse = makeRemoteMoviesResponse(9)
 
     @Test
-    fun `given DomainMovies list, when getMovies, then return data`() {
-        val domainMovies = makeDomainMovieList(9)
-        stubRemoteGetMovies(Single.just(domainMovies))
+    fun `given MovieRepository list, when getMovies, then return data`() {
 
-        val testObserver = repository.getMovies(apiKey).test()
+        stubRemoteMovieSourceGetMovies(Single.just(stubRemoteMoviesResponse))
 
-        testObserver.assertValue(domainMovies)
+        val testObserver = repository.getMovies().test()
+
+        testObserver.assertComplete()
     }
 
-    private fun stubRemoteGetMovies(single: Single<List<DomainMovie>>) {
-        whenever(repository.getMovies(apiKey)).thenReturn(single)
+    private fun stubRemoteMovieSourceGetMovies(single : Single<RemoteMoviesResponse>)  {
+        whenever(remote.getMovies()).thenReturn(single)
     }
 }

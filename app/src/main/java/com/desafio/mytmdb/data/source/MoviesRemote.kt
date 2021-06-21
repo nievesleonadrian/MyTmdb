@@ -1,9 +1,9 @@
 package com.desafio.mytmdb.data.source
 
 import com.desafio.mytmdb.data.model.RemoteMoviesResponse
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.Single
 
 interface MoviesRemote {
 
-    fun getMovies(apiKey: String): Single<RemoteMoviesResponse>
+    fun getMovies(): Single<RemoteMoviesResponse>
 }

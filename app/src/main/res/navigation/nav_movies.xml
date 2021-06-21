@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/movies_navigation"
+    android:label="Detalles"
+    app:startDestination="@id/moviesFragment">
+
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="com.desafio.mytmdb.ui.MoviesFragment"
+        android:label="Lista">
+        <action
+            android:id="@+id/action_moviesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.desafio.mytmdb.ui.DetailsFragment"
+        android:label="Detalles" >
+        <argument
+            android:name="uiMovie"
+            app:argType="com.desafio.mytmdb.presentation.model.UiMovie" />
+    </fragment>
+</navigation>

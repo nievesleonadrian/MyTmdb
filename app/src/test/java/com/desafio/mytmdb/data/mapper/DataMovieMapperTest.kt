@@ -11,14 +11,12 @@ class DataMovieMapperTest {
     private val mapper = DataMovieMapper()
 
     @Test
-    fun `given RemoteMoviesResponse, when fromRemoteToDomain, then return DomainMovie`() {
-        val remoteMoviesResponse = MovieFactory.makeRemoteMoviesResponse()
+    fun `given RemoteMoviesResponse, when fromRemoteToDomain, then return DomainMovie List`() {
+        val remoteMoviesResponse = MovieFactory.makeRemoteMoviesResponse(5)
 
-        val domainMovies  = with(mapper) {
-            remoteMoviesResponse.fromRemoteToDomain()
-        }
+        val domainMovies  = with(mapper) { remoteMoviesResponse.fromRemoteToDomain() }
 
-        assertMovieEquals(remoteMoviesResponse.results, domainMovies)
+        assertMovieEquals(remoteMoviesResponse.results!!, domainMovies)
     }
 
     private fun assertMovieEquals(listRemoteModel: List<RemoteMovie>, listDomainModel: List<DomainMovie>) {
